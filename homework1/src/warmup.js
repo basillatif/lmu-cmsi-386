@@ -40,6 +40,18 @@ function powers(base, max, callback) {
   }
 }
 
+function* powersGenerator(base, max) {
+  let value = 0;
+  let i = 0;
+  while (value < max) {
+    value = base ** i;
+    i += 1;
+    if (value <= max) {
+      yield value;
+    }
+  }
+}
+
 function say(a) {
   if (!a) {
     return '';
@@ -52,16 +64,17 @@ function say(a) {
   };
 }
 
-function* powersGenerator(base, max) {
-  let value = 0;
-  let i = 0;
-  while (value < max) {
-    value = base ** i;
-    i += 1;
-    if (value <= max) {
-      yield value;
+function interleave(arr, ...y) {
+  const resultArr = [];
+  while (arr.length > 0 || y.length > 0) {
+    if (arr.length > 0) {
+      resultArr.push(arr.shift());
+    }
+    if (y.length > 0) {
+      resultArr.push(y.shift());
     }
   }
+  return resultArr;
 }
 
 function cylinder({ radius = 1, height = 1 }) {
@@ -76,5 +89,5 @@ function cylinder({ radius = 1, height = 1 }) {
 }
 
 module.exports = {
-  change, stripQuotes, scramble, powers, powersGenerator, cylinder, say,
+  change, stripQuotes, scramble, powers, powersGenerator, cylinder, say, interleave,
 };
