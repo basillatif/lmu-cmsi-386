@@ -40,14 +40,19 @@ function powers(base, max, callback) {
   }
 }
 
+function say(a) {
+  if (!a) {
+    return '';
+  }
+  return (b) => {
+    if (!b) {
+      return a;
+    }
+    return say(a.concat(' ').concat(b));
+  };
+}
+
 function* powersGenerator(base, max) {
-  // let [x, y] = [a, b];
-  // let i = 0;
-  // while (x < y) {
-  //   [x, y] = [b, a ** i];
-  //   i += 1;
-  //   yield a;
-  // }
   let value = 0;
   let i = 0;
   while (value < max) {
@@ -59,6 +64,17 @@ function* powersGenerator(base, max) {
   }
 }
 
+function cylinder({ radius = 1, height = 1 }) {
+  const surfaceArea = () => (2 * Math.PI * radius * height) + (2 * Math.PI * (radius ** 2));
+  const volume = () => Math.PI * (radius ** 2) * height;
+  const widen = (multiple) => { radius *= multiple; };
+  const stretch = (multiple) => { height *= multiple; };
+  const toString = () => `Cylinder with radius ${radius} and height ${height}`;
+  return Object.freeze({
+    surfaceArea, volume, radius, height, widen, stretch, toString,
+  });
+}
+
 module.exports = {
-  change, stripQuotes, scramble, powers, powersGenerator,
+  change, stripQuotes, scramble, powers, powersGenerator, cylinder, say,
 };
