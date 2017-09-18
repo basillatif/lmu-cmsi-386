@@ -99,6 +99,32 @@ function cylinder(args) {
   });
 }
 
+const crypto = require('crypto');
+
+function makeCryptoFunctions(cryptoKey, cryptoAlgorithm) {
+  const encrypt = (str) => {
+    const cipher = crypto.createCipher(cryptoAlgorithm, cryptoKey);
+    let encrypted = cipher.update(str, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+  };
+  const decrypt = (hexStr) => {
+    const decipher = crypto.createDecipher(cryptoAlgorithm, cryptoKey);
+    let decrypted = decipher.update(hexStr, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+  };
+  return [encrypt, decrypt];
+}
+
 module.exports = {
-  change, stripQuotes, scramble, powers, powersGenerator, cylinder, say, interleave,
+  change,
+  stripQuotes,
+  scramble,
+  powers,
+  powersGenerator,
+  cylinder,
+  say,
+  interleave,
+  makeCryptoFunctions,
 };
