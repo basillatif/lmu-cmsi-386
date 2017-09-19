@@ -121,7 +121,9 @@ function makeCryptoFunctions(cryptoKey, cryptoAlgorithm) {
   };
   return [encrypt, decrypt];
   /* Used the crypto node package and documentation to cipher and
-  decipher */
+  decipher:
+  https://nodejs.org/api/crypto.html#crypto_class_cipher
+   */
 }
 
 function randomName(args) {
