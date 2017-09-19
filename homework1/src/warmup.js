@@ -117,6 +117,19 @@ function makeCryptoFunctions(cryptoKey, cryptoAlgorithm) {
   return [encrypt, decrypt];
 }
 
+const rp = require('request-promise');
+
+function randomName(args) {
+  const { region, gender } = args;
+  const options = {
+    uri: 'http://uinames.com/api/',
+    qs: { region, gender, amount: 1 },
+    json: true,
+  };
+
+  return rp(options).then(results => `${results.name}, ${results.surname}`);
+}
+
 module.exports = {
   change,
   stripQuotes,
@@ -127,4 +140,5 @@ module.exports = {
   say,
   interleave,
   makeCryptoFunctions,
+  randomName,
 };
