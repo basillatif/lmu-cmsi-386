@@ -131,6 +131,8 @@ function randomName(args) {
   };
 
   return rp(options).then(results => `${results.name}, ${results.surname}`);
+  /* Recommended by Haley Fletcher to use the 'request-promise' node package:
+  https://github.com/request/request-promise */
 }
 
 module.exports = {
