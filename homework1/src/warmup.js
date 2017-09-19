@@ -120,6 +120,8 @@ function makeCryptoFunctions(cryptoKey, cryptoAlgorithm) {
     return decrypted;
   };
   return [encrypt, decrypt];
+  /* Used the crypto node package and documentation to cipher and
+  decipher */
 }
 
 function randomName(args) {
