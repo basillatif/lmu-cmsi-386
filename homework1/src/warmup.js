@@ -1,3 +1,8 @@
+/* Collaboration between Jackson Watkins and Basil Latif */
+
+const rp = require('request-promise');
+const crypto = require('crypto');
+
 function change(amount) {
   let price = amount;
   const result = [];
@@ -24,7 +29,9 @@ function scramble(str) {
     arr[i] = arr[rand];
     arr[rand] = temp;
   }
-  /* Fisher Yates Algorithm */
+  /* Thanks to Alejandro Zapata for introducting me to the
+  Fisher Yates Algorithm for equally likely randomization
+  https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle */
   return arr.join('');
 }
 
@@ -99,8 +106,6 @@ function cylinder(args) {
   });
 }
 
-const crypto = require('crypto');
-
 function makeCryptoFunctions(cryptoKey, cryptoAlgorithm) {
   const encrypt = (str) => {
     const cipher = crypto.createCipher(cryptoAlgorithm, cryptoKey);
@@ -116,8 +121,6 @@ function makeCryptoFunctions(cryptoKey, cryptoAlgorithm) {
   };
   return [encrypt, decrypt];
 }
-
-const rp = require('request-promise');
 
 function randomName(args) {
   const { region, gender } = args;
