@@ -1,7 +1,7 @@
-from warmup import (change, strip_quotes, scramble, say, triples,
-    powers, interleave, Cylinder, make_crypto_functions, random_name)
-import pytest
 import math
+import pytest
+from warmup import (change, strip_quotes, scramble, say, triples, powers,
+                    interleave, Cylinder, make_crypto_functions, random_name)
 
 
 def test_change():
@@ -14,7 +14,7 @@ def test_change():
     assert change(100000000000) == (4000000000, 0, 0, 0)
     with pytest.raises(ValueError) as excinfo:
         change(-50)
-    assert 'amount cannot be negative' == str(excinfo.value)
+    assert str(excinfo.value) == 'amount cannot be negative'
 
 def test_strip_quotes():
     assert strip_quotes('') == ''
@@ -26,9 +26,9 @@ def test_scramble():
     for s in ['a', 'rat', 'JavaScript testing', '', 'zzz', '^*&^*&^▱ÄÈËɡɳɷ']:
         assert sorted(s) == sorted(scramble(s))
     possibilities = set(['ABC', 'ACB', 'BAC', 'BCA', 'CAB', 'CBA'])
-    for i in range(200):
-        possibilities.discard(scramble('ABC'));
-    assert len(possibilities) == 0
+    for _ in range(200):
+        possibilities.discard(scramble('ABC'))
+    assert not possibilities
 
 def test_say():
     assert say() == ''
@@ -40,8 +40,9 @@ def test_triples():
     assert triples(0) == []
     assert triples(5) == [(3, 4, 5)]
     assert triples(40) == [(3, 4, 5), (5, 12, 13), (6, 8, 10), (7, 24, 25), (8, 15, 17),
-        (9, 12, 15), (10, 24, 26), (12, 16, 20), (12, 35, 37), (15, 20, 25), (15, 36, 39),
-        (16, 30, 34), (18, 24, 30), (20, 21, 29), (21, 28, 35), (24, 32, 40)]
+                           (9, 12, 15), (10, 24, 26), (12, 16, 20), (12, 35, 37),
+                           (15, 20, 25), (15, 36, 39), (16, 30, 34), (18, 24, 30),
+                           (20, 21, 29), (21, 28, 35), (24, 32, 40)]
 
 def test_powers():
     p = powers(2, 10)
@@ -97,8 +98,8 @@ def test_crypto():
 
 def test_random_name():
     p = random_name(gender='female', region='canada')
-    assert(len(p) > 3)
-    assert(', ' in p)
+    assert len(p) > 3
+    assert ', ' in p
     with pytest.raises(ValueError) as excinfo:
         random_name(gender='fjweiuw', region='canada')
     assert '{"error":"Invalid gender"}' in str(excinfo.value)
