@@ -1,11 +1,21 @@
 # change, strip_quotes, scramble, say, triples, powers,
 #                    interleave, Cylinder, make_crypto_functions, random_name
+import re;
 
-def change(c):
-    return (c, c, c, c)
+def change(price):
+    if price < 0:
+        raise ValueError('amount cannot be negative')
+    coins = [25, 10, 5, 1]
+    results = []
+    remaining = price
+    for coin in coins:
+        d = divmod(remaining, coin)
+        results.append(d[0])
+        remaining = d[1]
+    return tuple(results)
 
 def strip_quotes(s):
-    return s
+    return re.sub(r'\'|\"', '', s)
 
 def scramble(s):
     return s
