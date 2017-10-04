@@ -1,6 +1,7 @@
 # change, strip_quotes, scramble, say, triples, powers,
 #                    interleave, Cylinder, make_crypto_functions, random_name
-import re;
+import re
+import random
 
 def change(price):
     if price < 0:
@@ -18,7 +19,11 @@ def strip_quotes(s):
     return re.sub(r'\'|\"', '', s)
 
 def scramble(s):
-    return s
+    c = list(s)
+    for item_index in range(0, len(c)-1):
+        random_int = random.randint(item_index, len(c)-1)
+        c[item_index], c[random_int] = c[random_int], c[item_index]
+    return ''.join(c)
 
 def say(s):
     return s
