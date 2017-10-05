@@ -25,14 +25,31 @@ def scramble(s):
         c[item_index], c[random_int] = c[random_int], c[item_index]
     return ''.join(c)
 
-def say(s):
-    return s
+def say(a=''):
+    if a == '':
+        return a
+    def say2(b=''):
+        if b == '':
+            return a
+        return say('{} {}'.format(a, b))
+    return say2
 
-def triples(number):
-    return number
+def triples(end):
+    result = []
+    for a in range(1, end+1):
+        for b in range(1, end+1):
+            for c in range(1, end+1):
+                if a**2 + b**2 == c**2 and a < b and b < c:
+                    result.append((a, b, c))
+    return result
 
 def powers(base, maximum):
-    return base * maximum
+    value = 1
+    p = 1
+    while value <= maximum:
+        yield value
+        value = base**p
+        p += 1
 
 def interleave(array, *args):
     return array + args
