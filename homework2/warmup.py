@@ -69,9 +69,10 @@ class Cylinder:
         self.radius = radius
         self.height = height
 
+    @property
     def volume(self):
         return math.pi * (self.radius ** 2) * self.height
-
+    @property
     def surface_area(self):
         return 2 * math.pi * self.radius * self.height + 2 * math.pi * (self.radius**2)
 
