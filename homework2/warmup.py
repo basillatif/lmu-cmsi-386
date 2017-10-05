@@ -2,6 +2,7 @@
 #                    interleave, Cylinder, make_crypto_functions, random_name
 import re
 import random
+import math
 
 def change(price):
     if price < 0:
@@ -51,11 +52,50 @@ def powers(base, maximum):
         value = base**p
         p += 1
 
-def interleave(array, *args):
-    return array + args
+def interleave(l, *args):
+    first_length = len(l)
+    second_length = len(args)
+    result = []
+    maximum = max(first_length, second_length)
+    for i in range(0, maximum):
+        if i < first_length:
+            result.append(l[i])
+        if i < second_length:
+            result.append(args[i])
+    return result
 
-def Cylinder(radius=1, height=1):
-    return radius + height
+class Cylinder:
+    def __init__(self, radius=1, height=1):
+        self.radius = radius
+        self.height = height
+
+    def volume(self):
+        return math.pi * (self.radius ** 2) * self.height
+
+    def surface_area(self):
+        return 2 * math.pi * self.radius * self.height + 2 * math.pi * (self.radius**2)
+
+    def widen(self, multiple):
+        self.radius = self.radius * multiple
+
+    def stretch(self, multiple):
+        self.height = self.height * multiple
+
+    # @property
+    # def radius(self):
+    #     return self.radius
+    #
+    # @radius.setter
+    # def radius(self, x):
+    #     self.radius = x
+    #
+    # @property
+    # def height(self):
+    #     return self.height
+    #
+    # @height.setter
+    # def height(self, x):
+    #     self.height = x
 
 def make_crypto_functions(s, key):
     return s + key
