@@ -1,3 +1,4 @@
+# Collaboration between Jackson Watkins and Basil Latif
 import re
 import random
 import math
@@ -107,6 +108,6 @@ def random_name(**params):
     r = requests.get('https://uinames.com/api/', params)
     if r.status_code not in range(200, 300):
         raise ValueError(r.text)
-    obj = json.loads(r.text)
-    full_name = '{}, {}'.format(obj['surname'], obj['name'])
+    person_object = json.loads(r.text)
+    full_name = '{}, {}'.format(person_object['surname'], person_object['name'])
     return full_name
