@@ -1,8 +1,10 @@
-# change, strip_quotes, scramble, say, triples, powers,
-#                    interleave, Cylinder, make_crypto_functions, random_name
 import re
 import random
 import math
+import json
+from Crypto.Cipher import AES
+import requests
+
 
 def change(price):
     if price < 0:
@@ -16,8 +18,10 @@ def change(price):
         remaining = d[1]
     return tuple(results)
 
+
 def strip_quotes(s):
     return re.sub(r'\'|\"', '', s)
+
 
 def scramble(s):
     c = list(s)
@@ -25,6 +29,7 @@ def scramble(s):
         random_int = random.randint(item_index, len(c)-1)
         c[item_index], c[random_int] = c[random_int], c[item_index]
     return ''.join(c)
+
 
 def say(a=''):
     if a == '':
@@ -35,6 +40,7 @@ def say(a=''):
         return say('{} {}'.format(a, b))
     return say2
 
+
 def triples(end):
     result = []
     for a in range(1, end+1):
@@ -44,6 +50,7 @@ def triples(end):
                     result.append((a, b, c))
     return result
 
+
 def powers(base, maximum):
     value = 1
     p = 1
@@ -51,6 +58,7 @@ def powers(base, maximum):
         yield value
         value = base**p
         p += 1
+
 
 def interleave(l, *args):
     first_length = len(l)
@@ -63,6 +71,7 @@ def interleave(l, *args):
         if i < second_length:
             result.append(args[i])
     return result
+
 
 class Cylinder:
     def __init__(self, radius=1, height=1):
@@ -82,24 +91,22 @@ class Cylinder:
     def stretch(self, multiple):
         self.height = self.height * multiple
 
-    # @property
-    # def radius(self):
-    #     return self.radius
-    #
-    # @radius.setter
-    # def radius(self, x):
-    #     self.radius = x
-    #
-    # @property
-    # def height(self):
-    #     return self.height
-    #
-    # @height.setter
-    # def height(self, x):
-    #     self.height = x
 
-def make_crypto_functions(s, key):
-    return s + key
+def make_crypto_functions(key, iv):
+    def encrypt(s):
+        obj = AES.new(key, AES.MODE_CBC, iv)
+        return obj.encrypt(s)
+    def decrypt(s):
+        obj = AES.new(key, AES.MODE_CBC, iv)
+        return obj.decrypt(s)
+    return (encrypt, decrypt)
 
-def random_name(gender, region):
-    return gender + region
+
+def random_name(**params):
+    params['amount'] = 1
+    r = requests.get('https://uinames.com/api/', params)
+    if r.status_code not in range(200, 300):
+        raise ValueError(r.text)
+    obj = json.loads(r.text)
+    full_name = '{}, {}'.format(obj['surname'], obj['name'])
+    return full_name
