@@ -8,5 +8,6 @@ For A[0][0], we get the memory address 0x556ec98891c0. For A[3][7], we get the m
 
 ## Problem 2
 
-The first declaration recognizes the location that a is a pointer to a spot in the array. 
+The first declaration recognizes that a is a pointer to a location index n in the array.
+The second declaration creates a pointer b of type double that points to an array of size n.
 
