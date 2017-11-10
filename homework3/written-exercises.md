@@ -16,4 +16,4 @@ The third declaration creates a pointer c of type double that points to a locati
 
 ## Problem 3
 
-F is a pointer to a function that takes in 2 arguments. THe first argument is a pointer to an anonymous function that takes in a double and an array of doubles and returns a double. The second argument is a double. \*f is called with multiple arguments, the first being a double 
+F is a pointer to a function that takes in 2 arguments. THe first argument is a pointer to an anonymous function that takes in a double and an array of doubles and returns a double. The second argument is a double. \*f is called with multiple arguments, the first being a double and the rest being unspecified
