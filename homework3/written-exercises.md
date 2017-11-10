@@ -8,5 +8,5 @@ For A[0][0], we get the memory address 0x556ec98891c0. For A[3][7], we get the m
 
 ## Problem 2
 
-The first declaration recognizes the location that a[n] is pointing to or referencing somewhere in main memory.
+The first declaration recognizes the location that a is a pointer to a spot in the array. 
 
