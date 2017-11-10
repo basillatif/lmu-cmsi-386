@@ -9,7 +9,11 @@ For A[0][0], we get the memory address 0x556ec98891c0. For A[3][7], we get the m
 ## Problem 2
 
 The first declaration recognizes that a is a pointer to a location index n in the array.
+
 The second declaration creates a pointer b of type double that points to an array of size n.
+
 The third declaration creates a pointer c of type double that points to a location index n in an array and calls the function that is existent at the index.
 
+## Problem 3
 
+F is a pointer to a function that takes in 2 arguments. THe first argument is a pointer to an anonymous function that takes in a double and an array of doubles and returns a double. The second argument is a double. \*f is called with multiple arguments, the first being a double 
