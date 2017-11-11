@@ -28,6 +28,8 @@ Static scoping gives us the result of 2, 5, 2. A statically scoped language firs
 
 ## Problem 6
 
-void shuffle(std::array<auto, size_of(&my_array)> &my_array)
+template<typename T, size_t s> void shuffle(std::array<T,s> &my_array)
 
-void shuffle(auto[] &my_array)
+void shuffle(auto &my_array)
+
+## 
