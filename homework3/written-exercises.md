@@ -24,4 +24,4 @@ The representation of the Derived object contains one b field. Even though a b f
 
 ## Problem 5
 
-Static scoping gives us the result of 2, 5, 2. A statically scoped language first searchs for local variables. If none are found, then it looks to the local variables of the calling function. If C++ used dynamic scoping we would get the answer of 5, 5, 2. 
+Static scoping gives us the result of 2, 5, 2. A statically scoped language first searchs for local variables. If none are found, then it looks to the global variables one level above it. If C++ used dynamic scoping we would get the answer of 5, 5, 2. 
