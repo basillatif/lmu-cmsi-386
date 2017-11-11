@@ -17,3 +17,8 @@ The third declaration creates a pointer c of type double that points to a locati
 ## Problem 3
 
 F is a pointer to a function that takes in 2 arguments. THe first argument is a pointer to an anonymous function that takes in a double and an array of doubles and returns a double. The second argument is a double. \*f is called with multiple arguments, the first being a double and the rest being unspecified
+
+## Problem 4
+
+The representation of the Derived object contains one b field. Even though a b field was declared in the Base class, the Derived class overwrites the existent b value with the new b value since they are the same variable. If the programmer creates an object from the Base class, accessing the b field of that class would return a string. If the programmer creates an object from the Derived class, accessing the b field of that class would return an int.
+
