@@ -22,3 +22,6 @@ F is a pointer to a function that takes in 2 arguments. THe first argument is a 
 
 The representation of the Derived object contains one b field. Even though a b field was declared in the Base class, the Derived class overwrites the existent b value with the new b value since they are the same variable. If the programmer creates an object from the Base class, accessing the b field of that class would return a string. If the programmer creates an object from the Derived class, accessing the b field of that class would return an int.
 
+## Problem 5
+
+Static scoping gives us the result of 2, 5, 2. A statically scoped language first searchs for local variables. If none are found, then it looks to the local variables of the calling function. If C++ used dynamic scoping we would get the answer of 5, 5, 2. 
