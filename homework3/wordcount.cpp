@@ -7,7 +7,7 @@
 using namespace std;
 
 template <typename T1, typename T2>
-struct less_second {
+  struct less_second {
     typedef pair<T1, T2> type;
     bool operator ()(type const& a, type const& b) const {
         return a.second > b.second;
@@ -16,23 +16,25 @@ struct less_second {
 
 void normalize(std::string &s){
     char c;
+    std::transform(s.begin(), s.end(), s.begin(), ::tolower);
     for (int i = 0; i < s.length(); i++){
         c = s[i];
-        if (isalpha(c) == 0){
+        if (!isalpha(c)){
             std::replace( s.begin(), s.end(), c, ' ');
-        } else {
-            std::transform(s.begin(), s.end(), s.begin(), ::tolower);
         }
     }
 }
 
 map<string,int> put_into_map(std::string &s){
-    typedef string::size_type string_size;
     map<string,int> wordcount;
+    if (s==""){
+      return wordcount;
+    }
+    typedef string::size_type string_size;
     string a;
     string_size i = 0;
 
-    while (i < s.size()){
+    while (i < s.size() && isdigit(s[i])){
         while (i < s.size() && !isalpha(s[i])){
             ++i;
         }
@@ -51,9 +53,6 @@ map<string,int> put_into_map(std::string &s){
     return wordcount;
 }
 
-
-
-
 int main() {
     string a;
     getline (cin, a);
@@ -62,6 +61,6 @@ int main() {
     vector<pair<string, int> > mapcopy(wordcount.begin(), wordcount.end());
     sort(mapcopy.begin(), mapcopy.end(), less_second<string, int>());
     for (auto wordpair: mapcopy){
-        cout << wordpair.first << ' '<< wordpair.second << '\n';
+        cout << wordpair.first << ':'<< wordpair.second << '\n';
     }
 }
