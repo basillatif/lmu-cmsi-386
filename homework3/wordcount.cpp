@@ -10,13 +10,12 @@ template <typename T1, typename T2>
 struct less_second {
     typedef pair<T1, T2> type;
     bool operator ()(type const& a, type const& b) const {
-        return a.second < b.second;
+        return a.second > b.second;
     }
 };
 
 void normalize(std::string &s){
     char c;
-    cout << s << '\n';
     for (int i = 0; i < s.length(); i++){
         c = s[i];
         if (isalpha(c) == 0){
@@ -25,7 +24,6 @@ void normalize(std::string &s){
             std::transform(s.begin(), s.end(), s.begin(), ::tolower);
         }
     }
-    cout << s << '\n';
 }
 
 map<string,int> put_into_map(std::string &s){
@@ -33,7 +31,6 @@ map<string,int> put_into_map(std::string &s){
     map<string,int> wordcount;
     string a;
     string_size i = 0;
-
 
     while (i < s.size()){
         while (i < s.size() && !isalpha(s[i])){
@@ -45,7 +42,6 @@ map<string,int> put_into_map(std::string &s){
             a+=s[j];
             j++;
         }
-        cout << a << '\n';
         if (!wordcount[a]){
             wordcount[a] = 0;
         }
@@ -62,8 +58,10 @@ int main() {
     string a;
     getline (cin, a);
     normalize(a);
-    cout << "Got past normalize" << '\n';
     map<string,int> wordcount = put_into_map(a);
     vector<pair<string, int> > mapcopy(wordcount.begin(), wordcount.end());
-    sort(wordcount.begin(), wordcount.end(), less_second<string, int>());
+    sort(mapcopy.begin(), mapcopy.end(), less_second<string, int>());
+    for (auto wordpair: mapcopy){
+        cout << wordpair.first << ' '<< wordpair.second << '\n';
+    }
 }
