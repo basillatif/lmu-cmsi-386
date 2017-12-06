@@ -1,16 +1,31 @@
 -- module Warmup exposing (change, stripQuotes, powers, sumOfCubesOdd, daysBetween)
 
-module Warmup exposing (powers)
+module Warmup exposing (..)
 -- import Regex exposing (replace)
 -- import List exposing(head, tail, minimum, maximum)
 -- import Tuple
 --
 -- divmod x y = x // y
 
-powers : Int -> Int -> Result String  (List Int)
+powers : Int -> Int -> Result String (List Int)
 powers base limit =
   if base < 0 then
     Err "negative base"
   else
     Ok
-      [5, 2]
+      <| List.map (\power -> base ^ power) (List.range 0 <| floor <| logBase (toFloat base) (toFloat limit))
+
+
+change : Int -> Result String (Int, Int, Int, Int)
+change amount =
+  if amount < 0 then
+    Err "amount cannot be negative"
+  else
+    Ok <|
+      let
+        a = amount
+        b = a % 25
+        c = b % 10
+        d = c % 5
+      in
+        (,,,) (a // 25) (b // 10) (c // 5) (d)

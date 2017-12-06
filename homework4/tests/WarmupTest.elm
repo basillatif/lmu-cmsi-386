@@ -3,25 +3,25 @@ module WarmupTest exposing (..)
 import Expect exposing (Expectation, FloatingPointTolerance(Absolute), within, equal)
 import Test exposing (..)
 import Warmup exposing (..)
--- import Cylinder exposing (..)
+import Cylinder exposing (..)
 
 suite : Test
 suite =
-    describe "This assignment's" [
-        -- [ describe "change function"
-        --     [ test "works for 0" <| \_ -> change 0 |> equal (Ok (0, 0, 0, 0))
-        --     , test "works for 229" <| \_ -> change 219 |> equal (Ok (8, 1, 1, 4))
-        --     , test "works for 97" <| \_ -> change 97 |> equal (Ok (3, 2, 0, 2))
-        --     , test "works for 100000000000" <| \_ -> change 1000000000 |> equal (Ok (40000000, 0, 0, 0))
-        --     , test "detects negatives" <| \_ -> change -50 |> equal (Err "amount cannot be negative")
-        --     ]
+    describe "This assignment's"
+        [ describe "change function"
+            [ test "works for 0" <| \_ -> change 0 |> equal (Ok (0, 0, 0, 0))
+            , test "works for 229" <| \_ -> change 219 |> equal (Ok (8, 1, 1, 4))
+            , test "works for 97" <| \_ -> change 97 |> equal (Ok (3, 2, 0, 2))
+            , test "works for 100000000000" <| \_ -> change 1000000000 |> equal (Ok (40000000, 0, 0, 0))
+            , test "detects negatives" <| \_ -> change -50 |> equal (Err "amount cannot be negative")
+            ]
         -- , describe "stripQuotes function"
         --     [ test "works for empty" <| \_ -> stripQuotes "" |> equal  ""
         --     , test "works for no quotes" <| \_ -> stripQuotes "dog" |> equal "dog"
         --     , test "removes stuff" <| \_ -> stripQuotes "''\"\"a'''" |> equal "a"
         --     , test "does not remove backslashes" <| \_ -> stripQuotes "a\\b" |> equal "a\\b"
         --     ]
-        describe "powers function"
+        , describe "powers function"
             [ test "works for negative limit" <| \_ -> powers 2 -5 |> equal (Ok [])
             , test "works for 2 up to 63" <| \_ -> powers 2 63 |> equal (Ok [1, 2, 4, 8, 16, 32])
             , test "works for 2 up to 64" <| \_ -> powers 2 64 |> equal (Ok [1, 2, 4, 8, 16, 32, 64])
