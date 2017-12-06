@@ -3,7 +3,7 @@ module WarmupTest exposing (..)
 import Expect exposing (Expectation, FloatingPointTolerance(Absolute), within, equal)
 import Test exposing (..)
 import Warmup exposing (..)
-import Cylinder exposing (..)
+-- import Cylinder exposing (..)
 
 suite : Test
 suite =
@@ -28,12 +28,12 @@ suite =
             , test "works for 3 up to 81" <| \_ -> powers 3 81 |> equal (Ok [1, 3, 9, 27, 81])
             , test "rejects negative bases" <| \_ -> powers -2 63 |> equal (Err "negative base")
             ]
-        -- , describe "sum of odd cubes function"
-        --     [ test "works for empty" <| \_ -> sumOfCubesOfOdds [] |> equal 0
-        --     , test "works for single even" <| \_ -> sumOfCubesOfOdds [8] |> equal 0
-        --     , test "works for single odd" <| \_ -> sumOfCubesOfOdds [3] |> equal 27
-        --     , test "works for a mixed list" <| \_ -> sumOfCubesOfOdds [-3, 2, -8, 5, -1] |> equal 97
-        --     ]
+        , describe "sum of odd cubes function"
+            [ test "works for empty" <| \_ -> sumOfCubesOfOdds [] |> equal 0
+            , test "works for single even" <| \_ -> sumOfCubesOfOdds [8] |> equal 0
+            , test "works for single odd" <| \_ -> sumOfCubesOfOdds [3] |> equal 27
+            , test "works for a mixed list" <| \_ -> sumOfCubesOfOdds [-3, 2, -8, 5, -1] |> equal 97
+            ]
         -- , describe "daysBetween function"
         --     [ test "one day" <| \_ -> daysBetween "2017-01-01" "2016-12-31" |> equal (Ok -1)
         --     , test "in leap year" <| \_ -> daysBetween "2016-03-01" "2016-02-27" |> equal (Ok -3)

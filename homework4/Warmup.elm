@@ -2,7 +2,7 @@
 
 module Warmup exposing (..)
 -- import Regex exposing (replace)
--- import List exposing(head, tail, minimum, maximum)
+-- import List exposing(isOdd)
 -- import Tuple
 --
 -- divmod x y = x // y
@@ -29,3 +29,8 @@ change amount =
         d = c % 5
       in
         (,,,) (a // 25) (b // 10) (c // 5) (d)
+
+
+sumOfCubesOfOdds : List Int -> Int
+sumOfCubesOfOdds list =
+  List.filter (\a -> a % 2 /= 0) list |>  List.map (\a -> a ^ 3) |> List.foldr (+) 0
