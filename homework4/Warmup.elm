@@ -15,6 +15,8 @@ powers base limit =
     Ok
       <| List.map (\power -> base ^ power) (List.range 0 <| floor <| logBase (toFloat base) (toFloat limit))
 
+stripQuotes s =
+  replace All (regex "[\"\']")(\_ -> "")
 
 change : Int -> Result String (Int, Int, Int, Int)
 change amount =
